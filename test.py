@@ -2,20 +2,18 @@ import json
 import numpy as np
 from collections import defaultdict
 
-
 data_path = "data/formatted_dataset.jsonl"
-
 
 with open(data_path, 'r', encoding='utf-8') as f:
     dataset = [json.loads(line) for line in f]
 
-# Initial dataset stats
-print("Num examples:", len(dataset))
-print("First example:")
+# Estatísticas iniciais do conjunto de dados
+print("Número de exemplos:", len(dataset))
+print("Primeiro exemplo:")
 for message in dataset[0]["messages"]:
     print(message)
 
-# Format error checks
+# Verificações de erro de formato
 format_errors = defaultdict(int)
 
 for ex in dataset:
@@ -48,8 +46,8 @@ for ex in dataset:
         format_errors["example_missing_assistant_message"] += 1
 
 if format_errors:
-    print("Found errors:")
+    print("Erros encontrados:")
     for k, v in format_errors.items():
         print(f"{k}: {v}")
 else:
-    print("No errors found")
+    print("Nenhum erro encontrado")
